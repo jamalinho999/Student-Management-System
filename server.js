@@ -2,7 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
@@ -252,7 +252,7 @@ app.get('/api/students/:id', (req, res) => controller.getStudentById(req, res));
 app.post('/api/students', (req, res) => controller.createStudent(req, res));
 app.put('/api/students/:id', (req, res) => controller.updateStudent(req, res));
 app.delete('/api/students/:id', (req, res) => controller.deleteStudent(req, res));
-
+app.get('/health', (req, res) => res.send('OK'));
 // Start server
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
